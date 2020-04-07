@@ -1,0 +1,13 @@
+.back-button {
+    background-color: black;
+    color: white;
+    height: 50px;
+    display: flex;
+    align-items: center
+}
+
+.button {
+    background-color: black;
+    border: none;
+    font-size: 24px;
+}

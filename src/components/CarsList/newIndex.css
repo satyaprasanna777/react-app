@@ -1,0 +1,110 @@
+/*body {*/
+
+/*    background-color: lightgrey;*/
+
+/*    padding: 20px;*/
+
+/*}*/
+
+.car-running-status {
+    border-bottom: 1px solid lightgrey;
+    padding-bottom: 20px;
+}
+
+.car-app {
+    /*height: 100vh;*/
+    background-color: white;
+    width: 600px;
+    margin: auto;
+    padding: 50px;
+}
+
+.accelerate-button,
+.decelerate-button,
+.start-button,
+.stop-button {
+    height: 40px;
+    font-size: 15px;
+    border: 0px;
+    border-radius: 5px;
+}
+
+.accelerate-button {
+    color: blue;
+    border: 1px solid blue;
+}
+
+.accelerate-button:hover {
+    background-color: blue;
+    color: white;
+}
+
+.decelerate-button {
+    color: red;
+    border: 1px solid red;
+}
+
+.decelerate-button:disabled,
+.accelerate-button:disabled {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.decelerate-button:hover {
+    background-color: red;
+    color: white;
+}
+
+.start-button {
+    background-color: green;
+    color: white;
+}
+
+.stop-button {
+    background-color: red;
+    color: white;
+}
+
+.controlling-speeed {
+    display: flex;
+    width: 300px;
+    justify-content: space-between;
+}
+
+.add-car {
+    background-color: blue;
+    color: white;
+    height: 40px;
+    border: 0px;
+    border-radius: 5px;
+    font-size: 15px;
+    display: flex;
+    margin-left: auto;
+}
+
+.add-car-button {
+    width: 700px;
+    background-color: white;
+    margin: auto;
+    padding-top: 20px;
+}
+
+.car-row-1 {
+    display: flex;
+    justify-content: space-between;
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.car-status {
+    font-weight: bold;
+}
+
+.car-row-2 {
+    width: 500px;
+    margin: auto;
+}
+
+.close-button {
+    color: red;
+}

@@ -1,5 +1,6 @@
-/*global ReactDOM*/
 import React from 'react';
+import { observable } from 'mobx';
+import { observer } from 'mobx-react'
 class Todo extends React.Component {
     constructor(props) {
         super(props);
@@ -32,24 +33,23 @@ class TodoAppBottom extends React.Component {
                 </div>;
     }
 }
+@observer
 class TodosList extends React.Component {
+    @observable numOfItems = 0;
+    @observable listOfTodos = [];
+    @observable todoFooterState = "all";
+    @observable numOfCompletedTodos = 0;
     constructor(props) {
         super(props);
         this.todoId = 0;
-        this.state = {
-            listOfTodos: [],
-            numOfItems: 0,
-            todoFooterState: "all",
-            numOfCompletedTodos: 0
-        };
     }
     addTodoToTodosList = (event) => {
         if (event.key === "Enter" && event.target.value != "") {
-            this.state.numOfItems++;
-            let updatedListOfTodos = this.state.listOfTodos.slice(0);
+            this.numOfItems++;
+            let updatedListOfTodos = this.listOfTodos.slice(0);
             updatedListOfTodos.push({ numOfTodos: this.todoId++, todo: event.target.value, todoCheckStatus: false, todoOnfocus: false });
             event.target.value = "";
-            this.setState({ listOfTodos: updatedListOfTodos });
+            this.listOfTodos = updatedListOfTodos;
         }
     }
     todoCheckedOrNot = (eachObj) => {
@@ -61,61 +61,59 @@ class TodosList extends React.Component {
             return <input style={eachObj.todoOnfocus?styles:null} className="entered-todo-unchecked" onFocus={()=>this.onfocus(eachObj)} onBlur={()=>this.onfocus(eachObj)} type="text" defaultValue={eachObj.todo}/>;
     }
     checkTodo = (eachObj) => {
-        let dupList = this.state.listOfTodos.slice(0);
+        let dupList = this.listOfTodos.slice(0);
         let index = dupList.indexOf(eachObj);
         if (eachObj.todoCheckStatus) {
-            this.state.numOfItems++;
-            this.state.numOfCompletedTodos--;
+            this.numOfItems++;
+            this.numOfCompletedTodos--;
             dupList[index]["todoCheckStatus"] = false;
         }
         else {
-            this.state.numOfItems--;
-            this.state.numOfCompletedTodos++;
+            this.numOfItems--;
+            this.numOfCompletedTodos++;
             dupList[index]["todoCheckStatus"] = true;
         }
-        this.setState({ listOfTodos: dupList });
+        this.listOfTodos = dupList;
     }
     removeTodo = (eachObj) => {
-        let dupList = this.state.listOfTodos.slice(0);
+        let dupList = this.listOfTodos.slice(0);
         let index = dupList.indexOf(eachObj);
         if (dupList[index].todoCheckStatus === false)
-            this.state.numOfItems--;
+            this.numOfItems--;
         else
-            this.state.numOfCompletedTodos--;
+            this.numOfCompletedTodos--;
         dupList.splice(index, 1);
-        //let newDupList = dupList.filter(eachEl => eachEl.numOfTodos != eachObj.numOfTodos)
-        this.setState({ listOfTodos: dupList });
+        this.listOfTodos = dupList;
     }
     onfocus = (eachObj) => {
-        let dupList = this.state.listOfTodos.slice(0);
+        let dupList = this.listOfTodos.slice(0);
         let index = dupList.indexOf(eachObj);
         dupList[index].todoOnfocus = !dupList[index].todoOnfocus
-        this.setState({ listOfTodos: dupList })
+        this.listOfTodos = dupList;
     }
     allTodos = () => {
-        this.setState({ todoFooterState: "all" });
+        this.todoFooterState = "all";
     }
     active = () => {
-        this.setState({ todoFooterState: "active" });
+        this.todoFooterState = "active";
     }
     completed = () => {
-        this.setState({ todoFooterState: "completed" });
+        this.todoFooterState = "completed";
     }
     clearCompleted = () => {
-        let dupList = this.state.listOfTodos.slice(0);
+        let dupList = this.listOfTodos.slice(0);
         let newDupList = dupList.filter(eachEl => eachEl.todoCheckStatus === false);
-        this.setState({ listOfTodos: newDupList });
+        this.listOfTodos = newDupList;
     }
 
     todosAppBottom = () => {
-        if (this.state.listOfTodos.length > 0)
-            return <TodoAppBottom numOfTodos={this.state.numOfItems} allTodos={this.allTodos} active={this.active} completed={this.completed} clearCompleted={this.clearCompleted} numOfCompletedTodos={this.state.numOfCompletedTodos}/>;
+        if (this.listOfTodos.length > 0)
+            return <TodoAppBottom numOfTodos={this.numOfItems} allTodos={this.allTodos} active={this.active} completed={this.completed} clearCompleted={this.clearCompleted} numOfCompletedTodos={this.numOfCompletedTodos}/>;
     }
     renderTodosList = () => {
-        let dupList = this.state.listOfTodos.slice(0);
-        let newbtn = this.state.todoFooterState;
+        let dupList = this.listOfTodos.slice(0);
         let newDupList;
-        switch (newbtn) {
+        switch (this.todoFooterState) {
             case "all":
                 newDupList = dupList.map((eachtodo) => <Todo key={eachtodo.numOfTodos} eachObj={eachtodo} checkTodo={this.checkTodo} checkStatus={this.todoCheckedOrNot} removeTodo={this.removeTodo} onfocus={this.onfocus}/>);
                 break;

@@ -30,6 +30,7 @@ import HomePage from "./components/HomePage";
 import Page1 from "./components/Page1";
 import MyProjects from "./components/my-projects";
 import "./App.css";
+import CounterPage from './components/CounterPage/index.js'
 import { Home } from './components/home/home.js'
 import { CarsList } from './components/CarsList/index';
 import { TodosList } from './components/TodosList/todos.js';
@@ -38,28 +39,49 @@ import CountriesDashboardApp from './components/countries-dash-board-app/countri
 import CountryDetails from './components/countries-dash-board-app/countryDetails.js'
 import EmojiGame from './components/EmojiGame/emojiGame.js';
 import { Examples } from './components/examples/examples.js';
+import CounterApp from './components/CounterApp/counterApp.js';
+import TodoApp from './components/TodoAppMobx/todoApp.js'
+import EventsApp from './components/EventsApp/eventsApp.js'
+import './components/TodosList/todos.css'
+
+
+import { observer } from 'mobx-react'
+
+import themeStore from './stores/ThemeStore/index.js'
+
+import { configure } from 'mobx'
+
 import {
   BrowserRouter as Router,
   Switch,
   Route
 }
 from "react-router-dom";
+
+//configure({ enforceActions: 'observed' });
+
+@observer
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = ({ selectedTheme: 'Light mode' })
+  getCurrentTheme = () => {
+    return themeStore.selectedTheme
   }
   onChangeTheme = () => {
-    if (this.state.selectedTheme === 'Light mode')
-      this.setState({ selectedTheme: "Dark mode" })
-    else
-      this.setState({ selectedTheme: "Light mode" })
+    themeStore.setCurrentTheme()
   }
   render() {
     return (
       <Router>                                
       <div>                      
-        <Switch>                                   
+        <Switch>  
+         <Route exact path="/events-app-mobx">
+          <EventsApp />
+        </Route>
+        <Route exact path="/todo-app-mobx">
+          <TodoApp />
+        </Route>
+        <Route exact path="/counter-page">
+          <CounterPage />
+        </Route>
         <Route exact path="/page-1">
           <Page1 />
         </Route>
@@ -76,13 +98,19 @@ class App extends React.Component {
           <Form/>
         </Route>
         <Route exact path="/countriesDashboardApp/:countryDetails">
-          <CountryDetails selectedTheme={this.state.selectedTheme} onChangeTheme={this.onChangeTheme}/>
+          <CountryDetails selectedTheme={this.getCurrentTheme()} 
+                          onChangeTheme={this.onChangeTheme}/>
         </Route>
         <Route exact path="/countriesDashboardApp">
-          <CountriesDashboardApp selectedTheme={this.state.selectedTheme} onChangeTheme={this.onChangeTheme}/>
+          <CountriesDashboardApp selectedTheme={this.getCurrentTheme()} 
+                                 onChangeTheme={this.onChangeTheme}/>
         </Route>
         <Route path="/emojiGame">
-          <EmojiGame selectedTheme={this.state.selectedTheme} onChangeTheme={this.onChangeTheme}/>
+          <EmojiGame selectedTheme={this.getCurrentTheme()} 
+                     onChangeTheme={this.onChangeTheme}/>
+        </Route>
+        <Route path="/counter-app">
+          <CounterApp/>
         </Route>
         <Route path="/examples">
           <Examples/>

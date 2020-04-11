@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import { observer, inject } from 'mobx-react'
+import React, { Component } from 'react';
+import { observer, inject } from 'mobx-react';
 
-import stores from '../../stores'
-const counterStore = stores.counterStore
+import stores from '../../stores';
+const counterStore = stores.counterStore;
 
 @observer
 class CounterPage extends Component {

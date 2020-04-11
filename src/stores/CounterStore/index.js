@@ -12,6 +12,10 @@ class CounterStore {
    decrementCounter() {
       this.count = this.count - 1
    }
+   @action.bound
+   changeCount(value) {
+      this.count = value;
+   }
 }
 
 export default CounterStore

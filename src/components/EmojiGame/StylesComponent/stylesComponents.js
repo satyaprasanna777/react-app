@@ -37,7 +37,6 @@ let HowToPlayInstr =
     `;
 let Footer =
     styled.div `
-    height:100px;
     padding:30px;
     background-color:${props=>props.selectedTheme==='Light mode'?"white":"#2d3748"};
     color:${props=>props.selectedTheme==='Light mode'?"black":"white"}

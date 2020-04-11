@@ -11,6 +11,8 @@ class AddEvent extends React.Component {
     @action.bound
     onAddEvent() {
         this.onAddEvent(this.eventName,this.eventLocation)
+        this.eventName="";
+        this.eventLocation="";
     }
 
     @action.bound

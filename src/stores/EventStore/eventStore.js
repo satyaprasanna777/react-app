@@ -8,8 +8,8 @@ class EventStore extends React.Component {
     @observable events = [];
 
     @action.bound
-    onAddEvent(name,location) {
-        let newEvent=new Event(name,location);
+    onAddEvent(name, location) {
+        let newEvent = new Event(name, location);
         this.events.push(newEvent)
         newEvent.push()
     }

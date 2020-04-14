@@ -1,8 +1,9 @@
 import React from 'react';
-import styled from '@emotion/styled';
-import tw from 'tailwind.macro';
-import { Provider, inject, observer } from 'mobx-react';
 import { observable } from 'mobx';
+/*import { Provider, inject, observer } from 'mobx-react';
+//import styled from '@emotion/styled';
+//import tw from 'tailwind.macro';
+
 
 @inject("temp", "name")
 class C extends React.Component {
@@ -43,4 +44,4 @@ class Examples extends React.Component {
     }
 }
 
-export { Examples }
+export { Examples }*/

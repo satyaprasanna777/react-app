@@ -1,9 +1,11 @@
 import React from 'react';
-import AddTodo from './AddTodo/addTodo.js'
-import todoStore from '../../stores/TodoStore/todoStore.js'
-import TodoList from './TodoList/todoList.js';
-import TodoFooter from './TodoFooter/todoFooter.js';
 import { observer } from 'mobx-react';
+
+import todoStore from '../../stores/TodoStore/todoStore'
+import AddTodo from './AddTodo/addTodo'
+import TodoList from './TodoList/todoList';
+import TodoFooter from './TodoFooter/todoFooter';
+
 
 @observer
 class TodoApp extends React.Component {

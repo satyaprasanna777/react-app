@@ -1,10 +1,13 @@
 import React from 'react';
-//import todoStore from '../../../stores/TodoStore/todoStore.js';
-import Todo from '../Todo/todo.js';
 import { observer } from 'mobx-react'
+import Todo from '../Todo/todo';
+
+type TodoListProps={
+    todos:any;
+}
 
 @observer
-class TodoList extends React.Component {
+class TodoList extends React.Component<TodoListProps> {
     constructor(props) {
         super(props);
     }
@@ -15,3 +18,4 @@ class TodoList extends React.Component {
     }
 }
 export default TodoList;
+  

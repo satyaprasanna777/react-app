@@ -1,8 +1,10 @@
 import React from 'react';
 import { observable, action } from 'mobx';
 import { observer } from 'mobx-react'
-import { Todos, TodoInput, Heading } from '../todoAppStyles.js'
-import todoStore from '../../../stores/TodoStore/todoStore.js';
+
+import todoStore from '../../../stores/TodoStore/todoStore';
+import { Todos, TodoInput, Heading } from '../todoAppStyles'
+
 
 @observer
 class AddTodo extends React.Component {

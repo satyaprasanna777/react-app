@@ -8,8 +8,8 @@ class Event extends React.Component{
         super(props);
     }
     @observable isEditEvent=false;
-    @observable eventName=event.name;
-    @observable eventLocation=event.location;
+    //@observable eventName=event.name;
+    //@observable eventLocation=event.location;
     
     @action.bound
     onDeleteEvent(){

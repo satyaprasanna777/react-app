@@ -26,31 +26,7 @@
 
 
 import React from "react";
-import HomePage from "./components/HomePage";
-import Page1 from "./components/Page1";
-import MyProjects from "./components/my-projects";
-import "./App.css";
-import CounterPage from './components/CounterPage/index.js'
-import { Home } from './components/home/home.js'
-import { CarsList } from './components/CarsList/index';
-import { TodosList } from './components/TodosList/todos.js';
-import { Form } from './components/form-components/form-component.js'
-import CountriesDashboardApp from './components/countries-dash-board-app/countries-dash-board-app.js'
-import CountryDetails from './components/countries-dash-board-app/countryDetails.js'
-import EmojiGame from './components/EmojiGame/emojiGame.js';
-import { Examples } from './components/examples/examples.js';
-import CounterApp from './components/CounterApp/counterApp.js';
-import TodoApp from './components/TodoAppMobx/todoApp.js'
-import EventsApp from './components/EventsApp/eventsApp.js'
-import './components/TodosList/todos.css'
-
-
 import { observer } from 'mobx-react'
-
-import themeStore from './stores/ThemeStore/index.js'
-
-import { configure } from 'mobx'
-
 import {
   BrowserRouter as Router,
   Switch,
@@ -58,6 +34,25 @@ import {
 }
 from "react-router-dom";
 
+import HomePage from "./components/HomePage";
+import Page1 from "./components/Page1";
+import MyProjects from "./components/my-projects";
+import "./App.css";
+//import CounterPage from './components/CounterPage/index';
+//import { Home } from './components/home/home.js';
+import { CarsList } from './components/CarsList/index';
+import { TodosList } from './components/TodosList/todos';
+import { Form } from './components/form-components/form-component'
+import CountriesDashboardApp from './components/countries-dash-board-app/countries-dash-board-app'
+import CountryDetails from './components/countries-dash-board-app/countryDetails'
+import EmojiGame from './components/EmojiGame/emojiGame';
+//import { Examples } from './components/examples/examples';
+import TodoApp from './components/TodoAppMobx/todoApp'
+import EventsApp from './components/EventsApp/eventsApp'
+import './components/TodosList/todos.css'
+import themeStore from './stores/ThemeStore/index'
+
+//import { configure } from 'mobx'
 //configure({ enforceActions: 'observed' });
 
 @observer
@@ -79,9 +74,9 @@ class App extends React.Component {
         <Route exact path="/todo-app-mobx">
           <TodoApp />
         </Route>
-        <Route exact path="/counter-page">
+        {/*<Route exact path="/counter-page">
           <CounterPage />
-        </Route>
+        </Route>*/}
         <Route exact path="/page-1">
           <Page1 />
         </Route>
@@ -109,12 +104,9 @@ class App extends React.Component {
           <EmojiGame selectedTheme={this.getCurrentTheme()} 
                      onChangeTheme={this.onChangeTheme}/>
         </Route>
-        <Route path="/counter-app">
-          <CounterApp/>
-        </Route>
-        <Route path="/examples">
+        {/*<Route path="/examples">
           <Examples/>
-        </Route>
+        </Route>*/}
         <Route path="/">
           <HomePage/>
         </Route>

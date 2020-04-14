@@ -1,6 +1,5 @@
 import React from 'react';
-import { observable } from 'mobx';
-import { observer } from 'mobx-react'
+
 class Todo extends React.Component {
     constructor(props) {
         super(props);
@@ -33,15 +32,15 @@ class TodoAppBottom extends React.Component {
                 </div>;
     }
 }
-@observer
+
 class TodosList extends React.Component {
-    @observable numOfItems = 0;
-    @observable listOfTodos = [];
-    @observable todoFooterState = "all";
-    @observable numOfCompletedTodos = 0;
     constructor(props) {
         super(props);
         this.todoId = 0;
+        this.numOfItems = 0;
+        this.listOfTodos = [];
+        this.todoFooterState = "all";
+        this.numOfCompletedTodos = 0;
     }
     addTodoToTodosList = (event) => {
         if (event.key === "Enter" && event.target.value != "") {

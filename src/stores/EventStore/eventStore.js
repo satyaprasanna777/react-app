@@ -12,7 +12,7 @@ class EventStore extends React.Component {
     onAddEvent(name, location) {
         let newEvent = new Event(name, location);
         this.events.push(newEvent)
-        newEvent.push()
+        //newEvent.push()
     }
 
     @action.bound
@@ -22,7 +22,7 @@ class EventStore extends React.Component {
 
     @computed
     get noOfEvents() {
-
+        return this.events.length;
     }
 }
 let eventStore = new EventStore();

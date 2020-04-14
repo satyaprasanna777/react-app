@@ -2,12 +2,8 @@ import React from 'react';
 import { observer } from 'mobx-react'
 import Todo from '../Todo/todo';
 
-type TodoListProps={
-    todos:any;
-}
-
 @observer
-class TodoList extends React.Component<TodoListProps> {
+class TodoList extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -18,4 +14,3 @@ class TodoList extends React.Component<TodoListProps> {
     }
 }
 export default TodoList;
-  

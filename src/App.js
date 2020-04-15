@@ -49,6 +49,7 @@ import EmojiGame from './components/EmojiGame/emojiGame';
 //import { Examples } from './components/examples/examples';
 import TodoApp from './components/TodoAppMobx/todoApp'
 import EventsApp from './components/EventsApp/eventsApp'
+import GridMemoryGameApp from './components/GridMemoryGameApp/index'
 import './components/TodosList/todos.css'
 import themeStore from './stores/ThemeStore/index'
 
@@ -68,10 +69,14 @@ class App extends React.Component {
       <Router>                                
       <div>                      
         <Switch>  
-         <Route exact path="/events-app-mobx">
+        <Route path="/grid-memory-game">
+          <GridMemoryGameApp selectedTheme={this.getCurrentTheme()} 
+                             onChangeTheme={this.onChangeTheme}/>
+        </Route>
+        <Route path="/events-app-mobx">
           <EventsApp />
         </Route>
-        <Route exact path="/todo-app-mobx">
+        <Route path="/todo-app-mobx">
           <TodoApp />
         </Route>
         {/*<Route exact path="/counter-page">

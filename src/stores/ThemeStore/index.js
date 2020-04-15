@@ -1,4 +1,4 @@
-import { observable, action, reaction } from 'mobx';
+import { observable, action } from 'mobx';
 class ThemeStore {
     @observable selectedTheme
     constructor() {
@@ -11,7 +11,7 @@ class ThemeStore {
         else
             this.selectedTheme = "Light mode"
     }
-    addTheme = reaction(() => this.selectedTheme, (theme) => console.log(theme))
+    //addTheme = reaction(() => this.selectedTheme, (theme) => console.log(theme))
 }
 const themeStore = new ThemeStore()
 export default themeStore

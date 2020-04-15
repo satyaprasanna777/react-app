@@ -34,6 +34,9 @@ class Home extends React.Component {
             <li>
               <Link to="/events-app-mobx">EventsAppMobx</Link>
             </li>
+            <li>
+              <Link to="/grid-memory-game">Grid Memory Game</Link>
+            </li>
           </ul>
         </nav>
   }

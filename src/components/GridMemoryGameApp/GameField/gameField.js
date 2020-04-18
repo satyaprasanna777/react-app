@@ -19,16 +19,16 @@ class GameField extends React.Component {
 
     addReaction1 = reaction(() => gameStore.currentLevelGridCells, (level, reaction) => {
         clearTimeout(this.timerId);
-        //this.setTimeForGameField();
+        this.setTimeForGameField();
     });
 
     addReaction2 = reaction(() => gameStore.isGameCompleted, (isGameCompleted) => {
-        clearTimeout(this.timerId)
+        clearTimeout(this.timerId);
     });
 
     @action.bound
     renderGameField() {
-        this.setTimeForGameField();
+        // this.setTimeForGameField();
         let { level, cells, onCellClick, selectedTheme } = this.props;
         return cells.map(eachCell => <GridCell selectedTheme={selectedTheme} key={eachCell.id} cell={eachCell} level={level} onCellClick={onCellClick}/>);
     }

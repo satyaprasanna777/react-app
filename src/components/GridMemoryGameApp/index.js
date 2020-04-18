@@ -1,27 +1,34 @@
 import React from 'react';
-import { observable } from 'mobx';
-import Header from './Header/header'
-import GameField from './GameField/gameField'
-import { GridGame } from './styleComponent'
-import gameStore from '../../stores/GridGameStore/gameStore'
+import { observer } from 'mobx-react';
+// import { action, reaction,observable } from 'mobx';
+import Header from './Header/header';
+import GameField from './GameField/gameField';
+import { GridGame } from './styleComponent';
+import gameStore from '../../stores/GridGameStore/gameStore';
+import GameResult from './GameResult/gameResult';
 
+@observer
 class GridMemoryGameApp extends React.Component {
-    @observable level = 0;
-    @observable topLevel = 0;
     constructor(props) {
         super(props);
-        gameStore.setGridCells();
     }
 
     render() {
         let { selectedTheme, onChangeTheme } = this.props;
         return (
             <GridGame selectedTheme={selectedTheme}>
-                <Header level={this.level} 
-                        topLevel={this.topLevel} 
+                <Header level={gameStore.level} 
+                        topLevel={gameStore.topLevel} 
                         selectedTheme={selectedTheme}
-                        onChangeTheme={onChangeTheme}/>
-                <GameField cells={gameStore.currentLevelGridCells} level={gameStore.level} onCellClick={gameStore.onCellClick}/>
+                        onChangeTheme={onChangeTheme}
+                />
+                {gameStore.isGameCompleted===false?
+                <GameField selectedTheme={selectedTheme} 
+                        cells={gameStore.currentLevelGridCells} 
+                        level={gameStore.level} 
+                        onCellClick={gameStore.onCellClick}
+                />:
+                <GameResult onPlayAgainClick={gameStore.onPlayAgainClick}/>}
             </GridGame>);
     }
 }

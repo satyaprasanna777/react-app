@@ -1,6 +1,8 @@
 import React from 'react';
-import { ThemeAndLevel,TopLevel } from './styleComponent'
+import { observer } from 'mobx-react'
+import { ThemeAndLevel, TopLevel, ThemeButton } from './styleComponent'
 
+@observer
 class Header extends React.Component {
     constructor(props) {
         super(props);
@@ -10,10 +12,10 @@ class Header extends React.Component {
         let { level, topLevel, selectedTheme, onChangeTheme } = this.props;
         return (
             <div>
-                <TopLevel>Top Level:{level}</TopLevel>
+                <TopLevel>Top Level:{topLevel}</TopLevel>
                 <ThemeAndLevel>
-                    <p>Level:{topLevel}</p>
-                    <button onClick={onChangeTheme}>Mode:{selectedTheme==='Light mode'?'Dark':'Light'}</button>
+                    <p>Level:{level}</p>
+                    <ThemeButton selectedTheme={selectedTheme} onClick={onChangeTheme}>Mode:{selectedTheme==='Light mode'?'Dark':'Light'}</ThemeButton>
                 </ThemeAndLevel>
             </div>);
     }

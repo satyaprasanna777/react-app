@@ -10,7 +10,7 @@ class Todo {
 
     constructor(value) {
         //super(value);
-        this.id = Math.floor(Math.random() * 1000);
+        this.id = Math.floor(Math.random() * 10000);
         this.title = value;
         this.isCompleted = false;
     }

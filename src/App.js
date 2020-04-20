@@ -46,7 +46,7 @@ import { Form } from './components/form-components/form-component'
 import CountriesDashboardApp from './components/countries-dash-board-app/countries-dash-board-app'
 import CountryDetails from './components/countries-dash-board-app/countryDetails'
 import EmojiGame from './components/EmojiGame/emojiGame';
-//import { Examples } from './components/examples/examples';
+import { Examples } from './components/examples/examples';
 import TodoApp from './components/TodoAppMobx/todoApp'
 import EventsApp from './components/EventsApp/eventsApp'
 import GridMemoryGameApp from './components/GridMemoryGameApp/index'
@@ -109,9 +109,9 @@ class App extends React.Component {
           <EmojiGame selectedTheme={this.getCurrentTheme()} 
                      onChangeTheme={this.onChangeTheme}/>
         </Route>
-        {/*<Route path="/examples">
+        <Route path="/examples">
           <Examples/>
-        </Route>*/}
+        </Route>
         <Route path="/">
           <HomePage/>
         </Route>

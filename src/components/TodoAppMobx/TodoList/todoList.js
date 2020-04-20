@@ -8,8 +8,11 @@ class TodoList extends React.Component {
         super(props);
     }
     render() {
+        let { todos } = this.props
         return (
-            this.props.todos.map(eachTodo => <Todo key={eachTodo.id} eachTodo={eachTodo}/>)
+            <div>
+                {todos.map(eachTodo => <Todo key={eachTodo.id} eachTodo={eachTodo}/>)}
+            </div>
         );
     }
 }

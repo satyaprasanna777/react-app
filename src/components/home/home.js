@@ -37,6 +37,12 @@ class Home extends React.Component {
             <li>
               <Link to="/grid-memory-game">Grid Memory Game</Link>
             </li>
+            <li>
+              <Link to="/users-page">users data</Link>
+            </li>
+            <li>
+              <Link to="/todos-with-api">TodosAppWithApi</Link>
+            </li>
           </ul>
         </nav>
   }

@@ -8,11 +8,11 @@ class Todo {
     @observable isCompleted;
 
 
-    constructor(value) {
+    constructor(todoObj) {
         //super(value);
         this.id = Math.floor(Math.random() * 10000);
-        this.title = value;
-        this.isCompleted = false;
+        this.title = todoObj.title;
+        this.isCompleted = todoObj.isCompleted;
     }
     @action.bound
     onCompleteTodo() {

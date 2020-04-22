@@ -33,6 +33,7 @@ import {
   Route
 }
 from "react-router-dom";
+import { Provider } from 'mobx-react';
 
 import HomePage from "./components/HomePage";
 import Page1 from "./components/Page1";
@@ -47,11 +48,14 @@ import CountriesDashboardApp from './components/countries-dash-board-app/countri
 import CountryDetails from './components/countries-dash-board-app/countryDetails'
 import EmojiGame from './components/EmojiGame/emojiGame';
 import { Examples } from './components/examples/examples';
-import TodoApp from './components/TodoAppMobx/todoApp'
-import EventsApp from './components/EventsApp/eventsApp'
-import GridMemoryGameApp from './components/GridMemoryGameApp/index'
-import './components/TodosList/todos.css'
-import themeStore from './stores/ThemeStore/index'
+import TodoApp from './components/TodoAppMobx/todoApp';
+import EventsApp from './components/EventsApp/eventsApp';
+import GridMemoryGameApp from './components/GridMemoryGameApp/index';
+import './components/TodosList/todos.css';
+import themeStore from './stores/ThemeStore/index';
+import UsersPage from './components/UsersPage';
+import TodosAppWithApi from './components/TodosAppWithApi'
+import stores from './stores';
 
 //import { configure } from 'mobx'
 //configure({ enforceActions: 'observed' });
@@ -66,58 +70,64 @@ class App extends React.Component {
   }
   render() {
     return (
-      <Router>                                
-      <div>                      
-        <Switch>  
-        <Route path="/grid-memory-game">
-          <GridMemoryGameApp selectedTheme={this.getCurrentTheme()} 
-                             onChangeTheme={this.onChangeTheme}/>
-        </Route>
-        <Route path="/events-app-mobx">
-          <EventsApp />
-        </Route>
-        <Route path="/todo-app-mobx">
-          <TodoApp />
-        </Route>
-        {/*<Route exact path="/counter-page">
-          <CounterPage />
-        </Route>*/}
-        <Route exact path="/page-1">
-          <Page1 />
-        </Route>
-        <Route exact path="/my-projects">
-          <MyProjects/>
-        </Route>
-        <Route path="/carsList">
-          <CarsList />
-        </Route>
-        <Route path="/todosList">
-          <TodosList/>
-        </Route>
-        <Route path="/formComponents">
-          <Form/>
-        </Route>
-        <Route exact path="/countriesDashboardApp/:countryDetails">
-          <CountryDetails selectedTheme={this.getCurrentTheme()} 
-                          onChangeTheme={this.onChangeTheme}/>
-        </Route>
-        <Route exact path="/countriesDashboardApp">
-          <CountriesDashboardApp selectedTheme={this.getCurrentTheme()} 
-                                 onChangeTheme={this.onChangeTheme}/>
-        </Route>
-        <Route path="/emojiGame">
-          <EmojiGame selectedTheme={this.getCurrentTheme()} 
-                     onChangeTheme={this.onChangeTheme}/>
-        </Route>
-        <Route path="/examples">
-          <Examples/>
-        </Route>
-        <Route path="/">
-          <HomePage/>
-        </Route>
-        </Switch>
-      </div>
-    </Router>
+      <Provider {...stores}>
+        <Router>                                
+        <div>                      
+          <Switch>  
+          <Route path="/grid-memory-game">
+            <GridMemoryGameApp selectedTheme={this.getCurrentTheme()} 
+                               onChangeTheme={this.onChangeTheme}/>
+          </Route>
+          <Route path="/events-app-mobx">
+            <EventsApp />
+          </Route>
+          <Route path="/todo-app-mobx">
+            <TodoApp />
+          </Route>
+          {/*<Route exact path="/counter-page">
+            <CounterPage />
+          </Route>*/}
+          <Route exact path="/page-1">
+            <Page1 />
+          </Route>
+          <Route exact path="/my-projects">
+            <MyProjects/>
+          </Route>
+          <Route path="/carsList">
+            <CarsList />
+          </Route>
+          <Route path="/todosList">
+            <TodosList/>
+          </Route>
+          <Route path="/formComponents">
+            <Form/>
+          </Route>
+          <Route exact path="/countriesDashboardApp/:countryDetails">
+            <CountryDetails selectedTheme={this.getCurrentTheme()} 
+                            onChangeTheme={this.onChangeTheme}/>
+          </Route>
+          <Route exact path="/countriesDashboardApp">
+            <CountriesDashboardApp selectedTheme={this.getCurrentTheme()} 
+                                   onChangeTheme={this.onChangeTheme}/>
+          </Route>
+          <Route path="/emojiGame">
+            <EmojiGame selectedTheme={this.getCurrentTheme()} 
+                       onChangeTheme={this.onChangeTheme}/>
+          </Route>
+          <Route path="/examples">
+            <Examples/>
+          </Route>
+          <Route path="/users-page" component={UsersPage}>
+          </Route>
+          <Route path="/todos-with-api" component={TodosAppWithApi}>
+          </Route>
+          <Route path="/">
+            <HomePage/>
+          </Route>
+          </Switch>
+        </div>
+      </Router>
+    </Provider>
     );
   }
 }

@@ -1,8 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import logo from "../../logo.svg";
 class App extends React.Component {
+  gotoGridScreenIfLoggedIn = () => {
+    return (
+      <Redirect
+      to={{
+        pathname:'/grid-memory-game',
+      }}
+      />
+    )
+  }
   render() {
+    // if (true) {
+    //   return this.gotoGridScreenIfLoggedIn();
+    // }
     return (
       <div className="App">
       <header className="App-header">
@@ -20,6 +32,7 @@ class App extends React.Component {
         </a>
         <Link to="/page-1">Page 1</Link>
         <Link to="/my-projects">My Projects</Link>
+        
       </header>
     </div>
     );

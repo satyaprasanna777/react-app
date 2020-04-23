@@ -3,14 +3,12 @@ import { action } from 'mobx';
 import { observer, inject } from 'mobx-react';
 import { EachTodo, RemoveTodoButton, TodoCheckBox, EnteredTodo } from './styleComponents';
 
-//import todoStore from '../../../stores/TodoStore/todoStore';
-
 @inject('todoStoreWithApi')
 @observer
 class Todo extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
 
     @action.bound
     onCompleteTodo() {

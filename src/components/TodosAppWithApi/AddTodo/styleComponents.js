@@ -14,8 +14,7 @@ let AddingTodo =
 
 let TodoInput =
     styled.input `
-    border:1px solid black;
-    box-shadow:5px 5px red;
+    box-shadow:5px 5px 5px grey;
     height:50px;
     width:500px;
     `;

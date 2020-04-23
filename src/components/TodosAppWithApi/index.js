@@ -26,7 +26,7 @@ class TodosAppWithApi extends React.Component {
     }
 
     render() {
-        const { getTodosApiStatus, getTodosApiError, todos } = this.props.todoStoreWithApi;
+        const { getTodosApiStatus, getTodosApiError, todos,allTodos } = this.props.todoStoreWithApi;
         return (
             <TodosApp>
                 <AddTodo/>
@@ -37,7 +37,7 @@ class TodosAppWithApi extends React.Component {
                 renderSuccessUI={this.renderTodosList}
                 />:
                 this.renderTodosList()}
-                {todos.length!==0?<TodoFooter 
+                {allTodos.length!==0?<TodoFooter 
                 numOfTodos={this.props.todoStoreWithApi.activeTodosCount}/>:null}
             </TodosApp>)
     }

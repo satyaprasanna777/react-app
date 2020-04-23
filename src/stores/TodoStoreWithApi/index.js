@@ -59,7 +59,7 @@ class TodoStoreWithApi {
 
     @computed
     get activeTodosCount() {
-        let activeTodos = this.allTodos.filter(eachTodo => eachTodo.isCompleted === false)
+        let activeTodos = this.todos.filter(eachTodo => eachTodo.isCompleted === false)
         return activeTodos.length;
     }
 

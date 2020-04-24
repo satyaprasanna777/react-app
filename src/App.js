@@ -34,6 +34,7 @@ import {
 }
 from "react-router-dom";
 import { Provider } from 'mobx-react';
+import { Redirect } from "react-router-dom";
 
 import HomePage from "./components/HomePage";
 import Page1 from "./components/Page1";
@@ -55,6 +56,7 @@ import './components/TodosList/todos.css';
 import themeStore from './stores/ThemeStore/index';
 import UsersPage from './components/UsersPage';
 import TodosAppWithApi from './components/TodosAppWithApi'
+import LoginPage from './components/LoginPage';
 import stores from './stores';
 
 //import { configure } from 'mobx'
@@ -65,10 +67,13 @@ class App extends React.Component {
   getCurrentTheme = () => {
     return themeStore.selectedTheme
   }
+
   onChangeTheme = () => {
     themeStore.setCurrentTheme()
   }
+
   render() {
+    console.log("App")
     return (
       <Provider {...stores}>
         <Router>                                
@@ -120,6 +125,9 @@ class App extends React.Component {
           <Route path="/users-page" component={UsersPage}>
           </Route>
           <Route path="/todos-with-api" component={TodosAppWithApi}>
+          </Route>
+          <Route path="/login-page">
+            <LoginPage/>
           </Route>
           <Route path="/">
             <HomePage/>

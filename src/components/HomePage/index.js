@@ -1,6 +1,10 @@
 import React from "react";
+import { observer } from 'mobx-react';
 import { Link, Redirect } from "react-router-dom";
 import logo from "../../logo.svg";
+import loginStore from '../../stores/LoginStore';
+
+@observer
 class App extends React.Component {
   gotoGridScreenIfLoggedIn = () => {
     return (
@@ -12,9 +16,10 @@ class App extends React.Component {
     )
   }
   render() {
-    // if (true) {
-    //   return this.gotoGridScreenIfLoggedIn();
-    // }
+    console.log("in app", loginStore.token)
+    if (loginStore.token) {
+      return this.gotoGridScreenIfLoggedIn();
+    }
     return (
       <div className="App">
       <header className="App-header">
@@ -32,7 +37,7 @@ class App extends React.Component {
         </a>
         <Link to="/page-1">Page 1</Link>
         <Link to="/my-projects">My Projects</Link>
-        
+        <Link to="/login-page">LoginPage</Link>
       </header>
     </div>
     );

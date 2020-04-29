@@ -37,6 +37,7 @@ class TodoStoreWithApi {
     @action.bound
     onChangeSelectedFilter(selectedFilter) {
         this.selectedFilter = selectedFilter;
+        // eslint-disable-next-line default-case
         switch (this.selectedFilter) {
             case 'All':
                 this.todos = this.allTodos.map(eachTodo => eachTodo);

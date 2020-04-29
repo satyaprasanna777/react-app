@@ -34,7 +34,6 @@ import {
 }
 from "react-router-dom";
 import { Provider } from 'mobx-react';
-import { Redirect } from "react-router-dom";
 
 import HomePage from "./components/HomePage";
 import Page1 from "./components/Page1";
@@ -57,7 +56,11 @@ import themeStore from './stores/ThemeStore/index';
 import UsersPage from './components/UsersPage';
 import TodosAppWithApi from './components/TodosAppWithApi'
 import LoginPage from './components/LoginPage';
-import stores from './stores';
+//import stores from './stores';
+
+import OnlineShoppingApp from "./OnlineShoppingApp/components";
+import stores from './common/stores';
+import { SignInPage } from "./AuthenticationPage/components/SignInPage";
 
 //import { configure } from 'mobx'
 //configure({ enforceActions: 'observed' });
@@ -73,7 +76,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log("App")
     return (
       <Provider {...stores}>
         <Router>                                
@@ -125,6 +127,10 @@ class App extends React.Component {
           <Route path="/users-page" component={UsersPage}>
           </Route>
           <Route path="/todos-with-api" component={TodosAppWithApi}>
+          </Route>
+          <Route path="/online-shopping-app" component={OnlineShoppingApp}>
+          </Route>
+          <Route path="/sign-in-page" component={SignInPage}>
           </Route>
           <Route path="/login-page">
             <LoginPage/>

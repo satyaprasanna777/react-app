@@ -5,7 +5,7 @@ import { observer } from 'mobx-react';
 class Todo {
     @observable id;
     @observable title;
-    @observable isCompleted;
+    @observable isCompleted;   
 
 
     constructor(todoObj) {

@@ -46,11 +46,7 @@ const YellowBar=
 
 const FreeShipping=
     styled.p`
-    background-color:black;
-    color:white;
-    margin-left:auto;
-    font-size:14px;
-    padding:5px;
+    ${tw`absolute top-10 right-0 bg-black p-1 text-xs text-white`};
     `;
 
 export {EachProduct,AddToCart,ProductImage,Title,Price,CurrencyFormat,Installements,YellowBar,FreeShipping};

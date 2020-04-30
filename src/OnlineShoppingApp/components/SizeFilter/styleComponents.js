@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-
 const SizeButtons=
     styled.div`
     display:flex;

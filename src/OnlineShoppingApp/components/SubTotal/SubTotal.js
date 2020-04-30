@@ -1,10 +1,14 @@
 import React from 'react';
+import { SubTOtalContainer } from "./styleComponents";
 
 class SubTotal extends React.Component{
     render(){
         let {total}=this.props;
         return(
-        <div>SUBTOTAL:{total}</div>
+        <SubTOtalContainer>
+            <p>SUBTOTAL</p>
+            <p>{total}</p>
+        </SubTOtalContainer>
         )
     }
 }

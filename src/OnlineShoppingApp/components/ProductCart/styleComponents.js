@@ -2,11 +2,25 @@ import styled from '@emotion/styled';
 
 const CartArea=
     styled.div`
-    width:350px;
+    width:400px;
     height:100vh;
     background-color:black;
     color:white;
-    
+    overflow:auto;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
     `;
 
-export {CartArea};
+const AddProductsMessage=
+    styled.p`
+    text-align:center;
+    `;
+
+const SubTotalAndCLearCheckOut=
+    styled.div`
+    display:flex;
+    flex-direction:column;
+    `;
+
+export {CartArea,AddProductsMessage,SubTotalAndCLearCheckOut};

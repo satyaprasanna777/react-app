@@ -15,10 +15,8 @@ class Product extends React.Component{
         let {productItem}=this.props;
         return(
             <EachProduct>
-                <div style={{display:"flex"}}>
                 {productItem.isFreeShipping?<FreeShipping>Free shipping</FreeShipping>:null}
                 <ProductImage src={productItem.imageURL} alt="LoadingImage"></ProductImage>
-                </div>
                 <Title>{productItem.title}</Title>
                 <YellowBar></YellowBar>
                 <Price><CurrencyFormat>{productItem.currencyFormat}</CurrencyFormat>{productItem.price}</Price>

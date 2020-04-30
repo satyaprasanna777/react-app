@@ -1,9 +1,9 @@
 import React from 'react';
-import { CartArea } from "./styleComponents";
 import { observer } from "mobx-react";
 import { CartList } from "../CartList";
 import { SubTotal } from "../SubTotal";
 import { CheckOutButton } from "../CheckOutButton";
+import { CartArea,AddProductsMessage,SubTotalAndCLearCheckOut } from "./styleComponents";
 
 @observer
 class ProductCart extends React.Component{
@@ -17,9 +17,11 @@ class ProductCart extends React.Component{
                 <CartList cartProductList={cartProductList} 
                 getProductDetailsById={getProductDetailsById}
                 onRemoveCartItem={onRemoveCartItem}/>:
-                <p>Add some products in cart</p>}
-                <SubTotal total={total}/>
-                <CheckOutButton clearCart={clearCart}/>
+                <AddProductsMessage>Add some products in cart</AddProductsMessage>}
+                <SubTotalAndCLearCheckOut>
+                    <SubTotal total={total}/>
+                    <CheckOutButton clearCart={clearCart}/>
+                </SubTotalAndCLearCheckOut>
             </CartArea>
         )
     }

@@ -43,6 +43,12 @@ class Home extends React.Component {
             <li>
               <Link to="/todos-with-api">TodosAppWithApi</Link>
             </li>
+            <li>
+              <Link to="/online-shopping-app">Online Shopping App</Link>
+            </li>
+            <li>
+              <Link to="/sign-in-page">Sign In Page</Link>
+            </li>
           </ul>
         </nav>
   }

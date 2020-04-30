@@ -1,0 +1,57 @@
+import { observable, action, computed } from "mobx";
+import CartItem from "../models/CartItem/CartItem";
+
+class CartStore{
+    @observable cartProductList;
+    @observable productStore;
+    @observable cartProductObjects;
+
+    constructor(productStore){
+        this.cartProductList=[];
+        this.cartProductObjects=[];
+        this.productStore=productStore;
+    }
+
+    @action.bound
+    onClickAddToCart(cartObj){
+        let newCartItem=new CartItem(cartObj);
+        let itemRepeat= this.cartProductList.find(eachItem=>eachItem.productId===cartObj.productId)
+        if(!itemRepeat){
+        this.cartProductList.push(newCartItem);
+        newCartItem.incrementQuantity();
+        }
+        else{
+            itemRepeat.incrementQuantity();
+            console.log("repeat",itemRepeat.quantity)
+        }
+    }
+
+    @action.bound
+    onRemoveCartItem(productId){
+        let removeItem=this.cartProductList.find(eachItem=>eachItem.productList===productId);
+        this.cartProductList.splice(removeItem,1);
+        this.cartProductObjects=this.cartProductObjects.filter(eachItem=>eachItem.productId!==productId);
+    }
+
+    @action.bound
+    clearCart(){
+        console.log("clear")
+        this.cartProductList=[];
+        this.cartProductObjects=[];
+    }
+
+    @action.bound
+    getProductDetailsById(productId){
+        console.log("cart details")
+        let cartProduct=this.productStore.productList.find(eachProduct=>eachProduct.productId===productId);
+        this.cartProductObjects.push(cartProduct);
+        return cartProduct;
+        }
+
+    @computed
+    get total(){
+        return this.cartProductObjects.reduce((prev,next) => prev + next.price,0);
+    }
+}
+
+export default CartStore;

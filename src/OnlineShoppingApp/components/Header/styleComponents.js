@@ -4,21 +4,15 @@ const HeaderPart=
     styled.div`
     display:flex;
     flex-direction:column;
+    padding:30px 0px 0px 50px;
     `;
 
-const CartAndSignout=
+const SignOutButton=
     styled.div`
-    display:flex;
-    justify-content:space-between;
+    border:1px solid black;
+    border-radius:4px;
+    width:70px;
+    margin-bottom:30px;
     `;
 
-const FiltersAndProducts=
-    styled.div`
-    display:flex;
-    justify-content:space-between;
-    `;
-
-const ProductsFound=
-    styled.div``;
-
-export {HeaderPart,CartAndSignout,FiltersAndProducts,ProductsFound}
+export {HeaderPart,SignOutButton}

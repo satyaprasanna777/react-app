@@ -8,6 +8,7 @@ import { CheckOutButton } from "../CheckOutButton";
 @observer
 class ProductCart extends React.Component{
     render(){
+        console.log(2)
         let {cartProductList,cartProductObjects, getProductDetailsById,onRemoveCartItem,total,clearCart}=this.props;
         return(
             <CartArea>

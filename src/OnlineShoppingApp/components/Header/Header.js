@@ -1,11 +1,10 @@
 import React from 'react';
 import { inject,observer } from "mobx-react";
-import {ProductSort} from '../ProductSort'
+import { withRouter } from "react-router-dom";
 import { SizeFilter } from "../SizeFilter";
-import { HeaderPart,CartAndSignout,FiltersAndProducts,ProductsFound } from "./styleComponents";
-import { ProductCart } from "../ProductCart";
+import { HeaderPart,SignOutButton} from "./styleComponents";
 
-@inject('productStore','cartStore')
+@inject('productStore')
 @observer
 class Header extends React.Component{
 
@@ -14,28 +13,20 @@ class Header extends React.Component{
     //     return <ProductCart/>
     // }
 
+    onClickSignOut=()=>{   
+        this.props.history.replace('/sign-in-page')
+    }
+
     render(){
-        let {productStore,cartStore}=this.props;
+        let {productStore}=this.props;
         return(
             <HeaderPart>
-                <CartAndSignout>
-                    <button>Sign Out</button>
-                    <ProductCart cartProductList={cartStore.cartProductList} 
-                    getProductDetailsById={cartStore.getProductDetailsById}
-                    onRemoveCartItem={cartStore.onRemoveCartItem}
-                    total={cartStore.total}
-                    clearCart={cartStore.clearCart}
-                    cartProductObjects={cartStore.cartProductObjects}/>
-                    {/* <button onClick={this.showOrHideCart}>CartImage</button> */}
-                </CartAndSignout>
-                <FiltersAndProducts>
-                    <SizeFilter onSelectSize={productStore.onSelectSize}/>
-                    <ProductsFound>{productStore.totalNoOfProductsDisplayed} Product(s) found</ProductsFound> 
-                    <ProductSort onChangeSortBy={productStore.onChangeSortBy}/>
-                </FiltersAndProducts>
+                <SignOutButton onClick={this.onClickSignOut}>Sign Out</SignOutButton>
+                {/* <button onClick={this.showOrHideCart}>CartImage</button> */}
+                <SizeFilter onSelectSize={productStore.onSelectSize} sizeFilter={productStore.sizeFilter}/>
             </HeaderPart>
         )
     }
 }
 
-export default Header;
+export default withRouter(Header);

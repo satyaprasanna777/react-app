@@ -6,6 +6,7 @@ const CartArea=
     height:100vh;
     background-color:black;
     color:white;
+    
     `;
 
 export {CartArea};

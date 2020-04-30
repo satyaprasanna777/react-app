@@ -1,19 +1,21 @@
 import React from 'react';
 import {observer} from 'mobx-react';
-import { SizeButtons,SizeButton } from "./styleComponents";
+import { SizeButtons,SizeButton,Sizes } from "./styleComponents";
+import { observable } from "mobx";
 
 @observer
 class SizeFilter extends React.Component{
-
+   
     onSelectSize=(event)=>{
         let {onSelectSize}=this.props;
         onSelectSize(event.target.value)
     }
 
     render(){
+        console.log("is clicked",this.clickedObj)
         return(
             <div>
-                <p>Sizes:</p>
+                <Sizes>Sizes:</Sizes>
                 <SizeButtons onClick={this.onSelectSize}>
                     <SizeButton value='XS'>XS</SizeButton>
                     <SizeButton value='S'>S</SizeButton>

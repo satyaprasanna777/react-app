@@ -2,8 +2,10 @@ import {observer, inject} from 'mobx-react';
 import React from 'react';
 import {Header} from "../Header";
 import { ProductList } from "../ProductList";
+import { ProductCart } from "../ProductCart";
+import { ProductPageContainer } from "./styleComponents";
 
-@inject('productStore')
+@inject('productStore','cartStore')
 @observer
 class ProductPage extends React.Component{
     componentDidMount(){
@@ -11,11 +13,18 @@ class ProductPage extends React.Component{
     }
 
     render(){
+        let {productStore,cartStore}=this.props;
         return (
-        <div>
+        <ProductPageContainer>
             <Header/>
-            <ProductList sortedAndFilteredProducts={this.props.productStore.sortedAndFilteredProducts}/>
-        </div>);
+            <ProductList sortedAndFilteredProducts={productStore.sortedAndFilteredProducts} productStore={productStore}/>
+            <ProductCart cartProductList={cartStore.cartProductList} 
+                    getProductDetailsById={cartStore.getProductDetailsById}
+                    onRemoveCartItem={cartStore.onRemoveCartItem}
+                    total={cartStore.total}
+                    clearCart={cartStore.clearCart}
+                    cartProductObjects={cartStore.cartProductObjects}/>
+        </ProductPageContainer>);
     }
 }
 

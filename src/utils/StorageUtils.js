@@ -10,7 +10,7 @@ function setCookie(key, value) {
   Cookie.set(key, value, {
     expires: 30,
     path: '/',
-  })
+  })   
 }
 
 export function getAccessToken() {

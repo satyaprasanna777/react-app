@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import { SizeFilter } from "../SizeFilter";
 import { HeaderPart,SignOutButton} from "./styleComponents";
 
-@inject('productStore')
+@inject('productStore','authStore')
 @observer
 class Header extends React.Component{
 
@@ -13,7 +13,8 @@ class Header extends React.Component{
     //     return <ProductCart/>
     // }
 
-    onClickSignOut=()=>{   
+    onClickSignOut=()=>{  
+        this.props.authStore.userSignOut();
         this.props.history.replace('/sign-in-page')
     }
 

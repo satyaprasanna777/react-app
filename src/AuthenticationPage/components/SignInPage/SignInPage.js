@@ -3,6 +3,7 @@ import { inject, observer } from "mobx-react";
 import { observable } from "mobx";
 import { SignInPageContainer,Heading,UserName,Password,SignInButton,ErrorMessage } from "./styleComponents";
 import { withRouter } from "react-router-dom";
+import { getAccessToken } from "../../../utils/StorageUtils";
 
 @inject('authStore')
 @observer
@@ -29,7 +30,7 @@ class SignInPage extends React.Component{
         this.errorMessage="please enter userName"
         else if(this.userName!==''&&this.password==='')
         this.errorMessage="please enter password"
-        else if(this.props.authStore.access_token!==''){
+        else if(getAccessToken()){
             this.props.history.replace('/online-shopping-app')
         }
     }

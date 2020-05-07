@@ -47,7 +47,7 @@ class Home extends React.Component {
               <Link to="/online-shopping-app">Online Shopping App</Link>
             </li>
             <li>
-              <Link to="/sign-in-page">Sign In Page</Link>
+              <Link to="/sign-in-route">Sign In Page</Link>
             </li>
           </ul>
         </nav>

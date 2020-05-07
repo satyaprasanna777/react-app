@@ -56,7 +56,7 @@ class ProductStore{
         this.getProductListAPIStatus=apiStatus;
     }
 
-    @action.bound
+    @action.bound   
     onChangeSortBy(condition){
         this.sortBy=condition;
     }
@@ -73,10 +73,10 @@ class ProductStore{
         let selectedSizes=this.sizeFilter.filter(eachSize=>eachSize.isClicked)
     
         this.filteredProducts=this.productList.filter(eachProduct=>{
-           let isPresent=selectedSizes.some(function temp(eachSizeObj,index){
-               return eachProduct.availableSizes.indexOf(eachSizeObj.size)!==-1;
-           })
-           return isPresent;
+        let isPresent=selectedSizes.some(function temp(eachSizeObj,index){
+            return eachProduct.availableSizes.indexOf(eachSizeObj.size)!==-1;
+        })
+        return isPresent;
         })
         //console.log("filtered",this.filteredProducts)
         
@@ -90,7 +90,7 @@ class ProductStore{
         return this.filteredProducts.sort((a, b) => (a.price < b.price) ? 1 : -1)
         else
         return this.filteredProducts;
-    }
+    }  
 
     @computed
     get sortedAndFilteredProducts(){

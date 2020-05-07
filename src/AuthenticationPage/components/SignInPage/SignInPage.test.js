@@ -1,98 +1,33 @@
-import {
-    API_SUCCESS,
-    API_FAILED,
-    API_FETCHING,
-    API_INITIAL
-} from "@ib/api-constants";
+import React from 'react';
+import { render } from "@testing-library/react";
+import {SignInPage} from '.';
 
-import AuthApi from "../../services/AuthService/AuthApi";
-import getUserSignInResponse from "../../fixtures/getAuthToken.json";
+describe("sign in page tests",()=>{
+    it("should test typed user name",()=>{
+        const userName="test-user";
+        const {getByPlaceholderText}=render(
+            <SignInPage userName={userName} onChangeUsername={() => {}}/>
+        );
+        
+        const userNameField=getByPlaceholderText('UserName');
+        expect(userNameField.value).toBe(userName);
+    })
 
-import {AuthStore} from "../../stores/AuthStore";
+    it("should test typed user password",()=>{
+        const password="test-password";
+        const {getByPlaceholderText}=render(
+            <SignInPage password={password} onChangePassword={() => {}}/>
+        );
+        
+        const passwordField=getByPlaceholderText('Password');
+        expect(passwordField.value).toBe(password);
+    })
 
-describe("AuthStore Tests", () => {
-    let authAPI;
-    let authStore;
-
-    beforeEach(() => {
-    authAPI = new AuthApi();
-    authStore = new AuthStore(authAPI);
-    });
-
-    it("should test initialising auth store", () => {
-        expect(authStore.getUserSignInAPIStatus).toBe(API_INITIAL);
-        expect(authStore.getUserSignInAPIError).toBe(null);
-    });
-
-    it("should test userSignInAPI data fetching state", () => {
-        // const onSuccess = jest.fn();
-        // const onFailure = jest.fn();
+    it("should render given error message", () => {
+        const { getByText } = render(
+        <SignInPage errorMessage="please enter userName" />
+        );
     
-        // const requestObject = {
-        // username: "test-user",
-        // password: "test-password"
-        // };
-
-        const mockLoadingPromise = new Promise(function(resolve, reject) {});
-        const mockSignInAPI = jest.fn();
-        mockSignInAPI.mockReturnValue(mockLoadingPromise);
-        authAPI.getCookieToken = mockSignInAPI;
-
-        authStore.userSignIn();
-        expect(authStore.getUserSignInAPIStatus).toBe(API_FETCHING);
-        // expect(onSuccess).not.toBeCalled();
-        // expect(onFailure).not.toBeCalled();
-});
-
-it("should test userSignInAPI success state", async () => {
-    // const onSuccess = jest.fn();
-    // const onFailure = jest.fn();
-
-    // const requestObject = {
-    // username: "test-user",
-    // password: "test-password"
-    // };
-
-    const mockSuccessPromise = new Promise(function(resolve, reject) {
-        resolve(getUserSignInResponse);
+        getByText(/please enter userName/i);
     });
-    const mockSignInAPI = jest.fn();
-
-    mockSignInAPI.mockReturnValue(mockSuccessPromise);
-    authAPI.getCookieToken = mockSignInAPI;
-    await authStore.userSignIn();
-    expect(authStore.getUserSignInAPIStatus).toBe(API_SUCCESS);
-    //expect(onSuccess).toBeCalled();
-    });
-
-    it("should test userSignInAPI failure state", async () => {
-        //const onSuccess = jest.fn();
-        //const onFailure = jest.fn();
-        // const requestObject = {
-        // username: "test-user",
-        // password: "test-password"
-        // };
-
-        const mockFailurePromise = new Promise(function(resolve, reject) {
-            reject(new Error("error"));
-        }).catch(() => {});
-        const mockSignInAPI = jest.fn();
-        mockSignInAPI.mockReturnValue(mockFailurePromise);
-        authAPI.getCookieToken = mockSignInAPI;
-
-        authStore = new AuthStore(authAPI);
-        authStore.userSignIn();
-
-        mockFailurePromise.catch(e => {
-            expect(authStore.getUserSignInAPIStatus).toBe(API_FAILED);
-            expect(authStore.getUserSignInAPIError).toBe("error");
-            //expect(onFailure).toBeCalled();
-        });
-        });
-
-        it("should test user sign-out", () => {
-            authStore.userSignOut();
-            expect(authStore.getUserSignInAPIStatus).toBe(API_INITIAL);
-            expect(authStore.getUserSignInAPIError).toBe(null);
-        });
-        });
+})

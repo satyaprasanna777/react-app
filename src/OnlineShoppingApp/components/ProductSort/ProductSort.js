@@ -5,7 +5,7 @@ import { SortBySizeDropDown } from "./styleComponents";
 @observer
 class ProductSort extends React.Component{
 
-    onChangeSortBy=(event)=>{
+    onChangeSortBy=(event)=>{   
         let {onChangeSortBy}=this.props;
         onChangeSortBy(event.target.value);
     }

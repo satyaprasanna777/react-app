@@ -60,7 +60,8 @@ import LoginPage from './components/LoginPage';
 
 import OnlineShoppingApp from "./OnlineShoppingApp/components";
 import stores from './common/stores';
-import { SignInPage } from "./AuthenticationPage/components/SignInPage";
+import { SignInRoute } from "./AuthenticationPage/routes/SignInRoute";
+// import { SignInPage } from "./AuthenticationPage/components/SignInPage";
 
 //import { configure } from 'mobx'
 //configure({ enforceActions: 'observed' });
@@ -83,7 +84,7 @@ class App extends React.Component {
           <Switch>  
           <Route path="/grid-memory-game">
             <GridMemoryGameApp selectedTheme={this.getCurrentTheme()} 
-                               onChangeTheme={this.onChangeTheme}/>
+                              onChangeTheme={this.onChangeTheme}/>
           </Route>
           <Route path="/events-app-mobx">
             <EventsApp />
@@ -115,11 +116,11 @@ class App extends React.Component {
           </Route>
           <Route exact path="/countriesDashboardApp">
             <CountriesDashboardApp selectedTheme={this.getCurrentTheme()} 
-                                   onChangeTheme={this.onChangeTheme}/>
+                                onChangeTheme={this.onChangeTheme}/>
           </Route>
           <Route path="/emojiGame">
             <EmojiGame selectedTheme={this.getCurrentTheme()} 
-                       onChangeTheme={this.onChangeTheme}/>
+                      onChangeTheme={this.onChangeTheme}/>
           </Route>
           <Route path="/examples">
             <Examples/>
@@ -130,7 +131,7 @@ class App extends React.Component {
           </Route>
           <Route path="/online-shopping-app" component={OnlineShoppingApp}>
           </Route>
-          <Route path="/sign-in-page" component={SignInPage}>
+          <Route path="/sign-in-route" component={SignInRoute}>
           </Route>
           <Route path="/login-page">
             <LoginPage/>

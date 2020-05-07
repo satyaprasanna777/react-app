@@ -12,7 +12,7 @@ class CartStore{
         this.productStore=productStore;
     }
 
-    @action.bound
+    @action.bound 
     onClickAddToCart(cartObj){
         let newCartItem=new CartItem(cartObj);
         let itemRepeat= this.cartProductList.find(eachItem=>eachItem.productId===cartObj.productId)

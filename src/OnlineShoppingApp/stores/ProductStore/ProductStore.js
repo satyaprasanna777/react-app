@@ -64,7 +64,7 @@ class ProductStore{
     @action.bound
     onSelectSize(size){
 
-        this.sizeFilter.filter(eachSize=>{
+        this.sizeFilter.forEach(eachSize=>{
             if(eachSize.size===size)
             eachSize.isClicked=!eachSize.isClicked
             return eachSize
@@ -78,7 +78,7 @@ class ProductStore{
         })
         return isPresent;
         })
-        //console.log("filtered",this.filteredProducts)
+        // console.log("filtered",this.filteredProducts)
         
     }
 

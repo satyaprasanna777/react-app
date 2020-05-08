@@ -29,16 +29,17 @@ class SignInRoute extends React.Component{
     
 
     onClickSignIn=async()=>{
-        await this.props.authStore.userSignIn();
         const {history}=this.props;
         if(this.userName==='' || this.userName===undefined)
         this.errorMessage="please enter userName"
         else if(this.password==='' || this.password===undefined)
         this.errorMessage="please enter password"
-        else if(getAccessToken()){
-            this.errorMessage=""
+        else {
+            this.errorMessage="";
+            await this.props.authStore.userSignIn();
+            if(getAccessToken())
             history.replace('/online-shopping-app')
-        }
+        }  
     }
 
     renderProductsPage = () => {

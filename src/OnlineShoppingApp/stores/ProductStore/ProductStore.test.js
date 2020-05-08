@@ -64,5 +64,42 @@ describe("Product store tests",()=>{
         expect(productStore.sortBy).toBe('ASCENDING');
     })
 
-    it("should return ")
+    it("should test setProductListResponse",()=>{
+        const productList=[{productId:1},{productId:2}];
+        productStore.setProductListResponse(productList);
+        expect(productStore.productList.length).toBe(2);
+    })
+
+    it("should test whether the clicked sizes are filtered",()=>{
+
+        productStore.onSelectSize("XS");
+        expect(productStore.sizeFilter[0].isClicked).toBeTruthy();
+
+        productStore.onSelectSize("XS");
+        expect(productStore.sizeFilter[0].isClicked).toBeFalsy();
+
+        productStore.setProductListResponse(getProductListresponse);
+        
+        productStore.onSelectSize("XS");
+        expect(productStore.filteredProducts.length).toBe(2);
+
+        productStore.onSelectSize("L");
+        expect(productStore.filteredProducts.length).toBe(11);
+
+        productStore.onSelectSize("S");
+        expect(productStore.filteredProducts.length).toBe(12);
+    })
+
+    it("should test ascending and descending order of products list based on price",()=>{
+        const productList=[
+            {id:1,price:120},
+            {id:2,price:100},
+            {id:3,price:400}
+        ]
+        productStore.setProductListResponse(productList);
+        productStore.sortBy="ASCENDING";
+        console.log("sorted",productStore.productList.map(product=>product.price))
+        expect(productStore.filteredProducts).toEqual([{id:2,price:100},{id:1,price:120},{id:3,price:400}])
+
+    })
 })

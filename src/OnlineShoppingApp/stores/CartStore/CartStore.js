@@ -1,8 +1,8 @@
-import { observable, action, computed } from "mobx";
+import { observable, action, computed, toJS } from "mobx";
 import CartItem from "../models/CartItem/CartItem";
 
 class CartStore{
-    @observable cartProductList;
+    cartProductList;
     @observable productStore;
     @observable cartProductObjects;
 
@@ -17,18 +17,19 @@ class CartStore{
         let newCartItem=new CartItem(cartObj);
         let itemRepeat= this.cartProductList.find(eachItem=>eachItem.productId===cartObj.productId)
         if(!itemRepeat){
-        this.cartProductList.push(newCartItem);
-        newCartItem.incrementQuantity();
+            this.cartProductList.push(newCartItem);
+            newCartItem.incrementQuantity();
         }
-        else{
+        else
             itemRepeat.incrementQuantity();
-            console.log("repeat",itemRepeat.quantity)
-        }
+
+            console.log("cartProductList:",toJS(this.cartProductList));
+
     }
 
     @action.bound
-    onRemoveCartItem(productId){
-        let removeItem=this.cartProductList.find(eachItem=>eachItem.productList===productId);
+    onRemoveCartItem(productId){   
+        let removeItem=this.cartProductList.find(eachItem=>eachItem.productId===productId);
         this.cartProductList.splice(removeItem,1);
         this.cartProductObjects=this.cartProductObjects.filter(eachItem=>eachItem.productId!==productId);
     }
@@ -42,9 +43,10 @@ class CartStore{
 
     @action.bound
     getProductDetailsById(productId){
-        console.log("cart details")
         let cartProduct=this.productStore.productList.find(eachProduct=>eachProduct.productId===productId);
         this.cartProductObjects.push(cartProduct);
+        console.log("cartProductObjects:",toJS(this.cartProductObjects));
+
         return cartProduct;
         }
 

@@ -15,7 +15,7 @@ class CartList extends React.Component{
             onRemoveCartItem={onRemoveCartItem}/>
             )
         )
-    }
+    }  
 }
 
 export default CartList;

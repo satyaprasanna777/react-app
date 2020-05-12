@@ -11,7 +11,7 @@ class Product extends React.Component{
         cartStore.onClickAddToCart(productItem);
     }
 
-    render(){
+    render(){   
         let {productItem}=this.props;
         return(
             <EachProduct>

@@ -19,7 +19,7 @@ class CartItem extends React.Component{
         let cartProduct=this.getProductDetailsById()
         return(
             <div>
-                <img src={cartProduct.imageURL} alt="imageLoading" width="100px"/>
+                <img src={cartProduct.imageURL} alt="imageLoading"/>
                 <p>{cartProduct.title}</p>
                 <p>{cartProduct.printStyle}</p>
                 <p><span>{cartProduct.currencyFormat}</span>{cartProduct.price}</p>

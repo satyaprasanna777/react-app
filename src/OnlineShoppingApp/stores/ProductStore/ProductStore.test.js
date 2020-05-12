@@ -70,36 +70,70 @@ describe("Product store tests",()=>{
         expect(productStore.productList.length).toBe(2);
     })
 
-    it("should test whether the clicked sizes are filtered",()=>{
+    it("should test whether isClicked is changing when on click action performed on sizes",()=>{
 
         productStore.onSelectSize("XS");
         expect(productStore.sizeFilter[0].isClicked).toBeTruthy();
 
         productStore.onSelectSize("XS");
         expect(productStore.sizeFilter[0].isClicked).toBeFalsy();
-
-        productStore.setProductListResponse(getProductListresponse);
-        
-        productStore.onSelectSize("XS");
-        expect(productStore.filteredProducts.length).toBe(2);
-
-        productStore.onSelectSize("L");
-        expect(productStore.filteredProducts.length).toBe(11);
-
-        productStore.onSelectSize("S");
-        expect(productStore.filteredProducts.length).toBe(12);
     })
 
-    it("should test ascending and descending order of products list based on price",()=>{
-        const productList=[
-            {id:1,price:120},
-            {id:2,price:100},
-            {id:3,price:400}
+    it("should test filtered products list",()=>{
+        productStore.productList=[
+            {id:1,availableSizes:['S','XS'],price:120},
+            {id:2,availableSizes:['M','L'],price:100},
+            {id:3,availableSizes:['XL','XS','S'],price:400}
         ]
-        productStore.setProductListResponse(productList);
-        productStore.sortBy="ASCENDING";
-        console.log("sorted",productStore.productList.map(product=>product.price))
-        expect(productStore.filteredProducts).toEqual([{id:2,price:100},{id:1,price:120},{id:3,price:400}])
 
+        productStore.filteredProducts=[];
+        expect(productStore.sortedAndFilteredProducts).toEqual(productStore.productList);
+        
+        productStore.filteredProducts=productStore.productList;
+
+        const ascendingProducts=[
+            {id:2,availableSizes:['M','L'],price:100},
+            {id:1,availableSizes:['S','XS'],price:120},
+            {id:3,availableSizes:['XL','XS','S'],price:400}
+        ]
+
+        const descendingProducts=[
+            {id:3,availableSizes:['XL','XS','S'],price:400},
+            {id:1,availableSizes:['S','XS'],price:120},
+            {id:2,availableSizes:['M','L'],price:100}
+        ]
+
+        productStore.sortBy="ASCENDING";
+        expect(productStore.sortedAndFilteredProducts).toEqual(ascendingProducts)
+
+        productStore.sortBy="DESCENDING";
+        expect(productStore.sortedAndFilteredProducts).toEqual(descendingProducts)
+
+        const descendingFilteredProducts=[
+            {id:3,availableSizes:['XL','XS','S'],price:400},
+            {id:1,availableSizes:['S','XS'],price:120}
+        ]
+
+        productStore.onSelectSize("XS");
+        expect(productStore.sortedAndFilteredProducts).toEqual(descendingFilteredProducts)
+    })
+
+    it("should test totla number of products in the product list initially",()=>{
+        productStore.setProductListResponse(getProductListresponse);
+        expect(productStore.totalNoOfProductsDisplayed).toBe(getProductListresponse.length)
+    })
+
+    it("should test total number of products after selecting size filters",()=>{
+        productStore.setProductListResponse(getProductListresponse);
+        productStore.onSelectSize("XS");
+        expect(productStore.totalNoOfProductsDisplayed).toBe(2)
+        expect(productStore.totalNoOfProductsDisplayed).not.toBe(0)
+
+        productStore.onSelectSize("XS");
+        expect(productStore.totalNoOfProductsDisplayed).toBe(getProductListresponse.length)
+
+        productStore.onSelectSize("XS");
+        productStore.onSelectSize("S");
+        expect(productStore.totalNoOfProductsDisplayed).toBe(5)
     })
 })

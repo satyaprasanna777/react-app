@@ -8,37 +8,38 @@ import { CartArea,AddProductsMessage,SubTotalAndCLearCheckOut,CartContainer,Clos
 import {observable} from "mobx"
 @observer
 class ProductCart extends React.Component{
-   @observable  shouldDisplayCart =false
-   showCart=()=>{
-   this.shouldDisplayCart=true
-   }
-   hideCart=()=>{
+    @observable  shouldDisplayCart =false
+
+    showCart=()=>{
+    this.shouldDisplayCart=true
+    }
+    hideCart=()=>{
     this.shouldDisplayCart=false
-   }
+    }
     render(){
         let {cartProductList,cartProductObjects, getProductDetailsById,onRemoveCartItem,total,clearCart}=this.props;
         return(
-            <div>
+        <div>
             <Cart onClick={this.showCart}>button</Cart>
             <CartArea>
                 {this.shouldDisplayCart?
                 <CartContainer shouldDisplayCart={this.shouldDisplayCart}>
                     <CloseCart onClick={this.hideCart}>X</CloseCart>
                     <DisplayCart>
-                            <p>no.of items:{cartProductObjects.length}</p>
-                        {cartProductList.length!==0?
-                        <CartList cartProductList={cartProductList} 
-                        getProductDetailsById={getProductDetailsById}
-                        onRemoveCartItem={onRemoveCartItem}/>:
-                        <AddProductsMessage>Add some products in cart</AddProductsMessage>}
+                        <p>no.of items:{cartProductObjects.length}</p>
+                        {
+                            cartProductList.length!==0?
+                            <CartList cartProductList={cartProductList} 
+                            getProductDetailsById={getProductDetailsById}
+                            onRemoveCartItem={onRemoveCartItem}/>:
+                            <AddProductsMessage>Add some products in cart</AddProductsMessage>
+                        }
                         <SubTotalAndCLearCheckOut>
                             <SubTotal total={total}/>
                             <CheckOutButton clearCart={clearCart}/>
                         </SubTotalAndCLearCheckOut>
-                    
                     </DisplayCart>
                 </CartContainer>:""}
-
             </CartArea>
         </div>)
     }

@@ -85,9 +85,9 @@ class ProductStore{
     @computed
     get products(){
         if(this.sortBy==='ASCENDING')
-        return this.filteredProducts.sort((a, b) => (a.price > b.price) ? 1 : -1)
+        return this.filteredProducts.slice(0).sort((a, b) => (a.price > b.price) ? 1 : -1)
         else if(this.sortBy==='DESCENDING')
-        return this.filteredProducts.sort((a, b) => (a.price < b.price) ? 1 : -1)
+        return this.filteredProducts.slice(0).sort((a, b) => (a.price < b.price) ? 1 : -1)
         else
         return this.filteredProducts;
     }  

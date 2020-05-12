@@ -27,7 +27,6 @@ class SignInRoute extends React.Component{
         }
     };
     
-
     onClickSignIn=async()=>{
         const {history}=this.props;
         if(this.userName==='' || this.userName===undefined)
@@ -44,7 +43,7 @@ class SignInRoute extends React.Component{
 
     renderProductsPage = () => {
         return <Redirect to={'/online-shopping-app'} />;
-    };
+    };   
 
     render(){
         if (isLoggedIn()) {

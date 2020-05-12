@@ -14,7 +14,7 @@ class Header extends React.Component{
     // }
 
     onClickSignOut=()=>{  
-        this.props.authStore.userSignOut();
+        this.props.authStore.userSignOut();      
         this.props.history.replace('/sign-in-page')
     }
 
@@ -23,7 +23,6 @@ class Header extends React.Component{
         return(
             <HeaderPart>
                 <SignOutButton onClick={this.onClickSignOut}>Sign Out</SignOutButton>
-                {/* <button onClick={this.showOrHideCart}>CartImage</button> */}
                 <SizeFilter onSelectSize={productStore.onSelectSize} sizeFilter={productStore.sizeFilter}/>
             </HeaderPart>
         )

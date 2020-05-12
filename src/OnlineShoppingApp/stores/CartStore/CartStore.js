@@ -2,7 +2,7 @@ import { observable, action, computed, toJS } from "mobx";
 import CartItem from "../models/CartItem/CartItem";
 
 class CartStore{
-    cartProductList;
+    @observable cartProductList;
     @observable productStore;
     @observable cartProductObjects;
 
@@ -34,9 +34,8 @@ class CartStore{
         this.cartProductObjects=this.cartProductObjects.filter(eachItem=>eachItem.productId!==productId);
     }
 
-    @action.bound
+    @action.bound    
     clearCart(){
-        console.log("clear")
         this.cartProductList=[];
         this.cartProductObjects=[];
     }

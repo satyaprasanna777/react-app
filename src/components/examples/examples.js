@@ -1,36 +1,31 @@
-/*global fetch*/
-import React from 'react';
-import { observable } from 'mobx';
-//import styled from '@emotion/styled';
-//import tw from 'tailwind.macro';
+// import React from 'react';
+// import withSubscription from "./MyFuncComp";
 
-class Examples extends React.Component {
+// class Example1 extends React.Component{
+//     render(){
+//         const {data,onClickButton}=this.props;
+//         console.log("bgCOlor:",data)
+//         return(
+//             <div>
+//                 <button onClick={onClickButton} style={{backgroundColor:data, height:'50px'}}>button1</button>
+//             </div>
+//         )
+//     }
+// }
 
-    componentDidMount() {
-        fetch(
-                'https://todo-list-2.getsandbox.com/todos', {
-                    method: 'get',
-                    dataType: 'json',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json',
-                        //'Authorization':'Bearer '+this.props.token
-                    }
-                })
-            .then((response) => {
-                return response.json();
-            })
-            .then((responseValue) => {
-                console.log(responseValue);
-            })
-    }
+// class Example2 extends React.Component{
+//     render(){
+//         const {data,onClickButton}=this.props;
+//         return(
+//             <div>
+//                 <button onClick={onClickButton}>{data?{data}:'button2'}</button>
+//             </div>
+//         )
+//     }
+// }
 
-    render() {
-        return (
-            <div>
-                hai i am here
-            </div>)
-    }
-}
+// const Button1WithSubscription=withSubscription(Example1,'red')
+// const Button2WithSubscription=withSubscription(Example2,'hai welcome')
 
-export { Examples }
+
+// export { Button1WithSubscription,Button2WithSubscription }

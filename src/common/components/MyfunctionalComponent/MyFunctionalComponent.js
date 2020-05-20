@@ -25,33 +25,26 @@ function withScreenSizeDetectors(WrappedComponent){
             super(props);
             this.state={viewPortWidth:window.innerWidth}
         }
-
-        isMobile=()=>{
-            this.setState({viewPortWidth:window.innerWidth});
-            return 'Mobile';
-        }
-
-        isTablet=()=>{
-            this.setState({viewPortWidth:window.innerWidth});
-            return 'Tablet';
-        }
-
-        isDesktop=()=>{
-            this.setState({viewPortWidth:window.innerWidth});
-            return 'Desktop';
+        
+        componentWillUnmount=()=>{
+            return () => window.removeEventListener('resize', this.selectDeviceType());
         }
 
         selectDeviceType=()=>{
             if(window.innerWidth<576)
-            return this.isMobile();
+            return 'Mobile'
             else if(window.innerWidth>=576 && window.innerWidth<992)
-            return this.isTablet();
+            return 'Tablet'
             else
-            return this.isDesktop();
+            return 'Desktop'
+        }
+
+        updateState=()=>{
+            this.setState({viewPortWidth:window.innerWidth});
         }
 
         render(){
-            console.log("width:",this.state.viewPortWidth)
+            window.addEventListener('resize', this.updateState);
             return <WrappedComponent deviceType={this.selectDeviceType}/>;
         }
     }

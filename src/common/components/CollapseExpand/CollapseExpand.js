@@ -1,16 +1,19 @@
 import React from 'react';
 import {withToggleFunction} from "../MyfunctionalComponent/MyFunctionalComponent";
+import { CollapseExpandContainer,ExpandCollapseButtonAndText,ToggleButton,ListItems } from "./styleComponents";
 
 class CollapseExpand extends React.Component{
     render(){
         const {toggleStatus,onToggle}=this.props;
         return(
-            <div>
+            <CollapseExpandContainer>
                 <b>CollapseExpand</b>
-                <p>Sample shopping list:</p>
-                <button onClick={onToggle}>{toggleStatus?"Collapse":"Expand"}</button>
-                {toggleStatus?<div>Eggs<br/>Bread</div>:null}
-            </div>
+                <ExpandCollapseButtonAndText>
+                    <p>Sample shopping list:</p>
+                    <ToggleButton onClick={onToggle}>{toggleStatus?"Collapse":"Expand"}</ToggleButton>
+                </ExpandCollapseButtonAndText>
+                {toggleStatus?<ListItems>Eggs<br/>Bread</ListItems>:null}
+            </CollapseExpandContainer>
         )
     }
 }

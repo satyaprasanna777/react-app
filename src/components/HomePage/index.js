@@ -38,6 +38,7 @@ class App extends React.Component {
         <Link to="/page-1">Page 1</Link>
         <Link to="/my-projects">My Projects</Link>
         <Link to="/login-page">LoginPage</Link>
+        <Link to="/private-advanced-concepts">Private Advanced Concepts</Link>
       </header>
     </div>
     );

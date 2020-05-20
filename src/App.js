@@ -47,7 +47,7 @@ import { Form } from './components/form-components/form-component'
 import CountriesDashboardApp from './components/countries-dash-board-app/countries-dash-board-app'
 import CountryDetails from './components/countries-dash-board-app/countryDetails'
 import EmojiGame from './components/EmojiGame/emojiGame';
-import { Examples } from './components/examples/examples';
+import MouseTracker from './components/examples/examples';
 import TodoApp from './components/TodoAppMobx/todoApp';
 import EventsApp from './components/EventsApp/eventsApp';
 import GridMemoryGameApp from './components/GridMemoryGameApp/index';
@@ -61,6 +61,7 @@ import LoginPage from './components/LoginPage';
 import OnlineShoppingApp from "./OnlineShoppingApp/components";
 import stores from './common/stores';
 import { SignInRoute } from "./AuthenticationPage/routes/SignInRoute";
+import { PracticeAdvancedConceptsRoute } from "./common/routes/PracticeAdvancedConceptsRoute/PracticeAdvancedConceptsRoute";
 // import { SignInPage } from "./AuthenticationPage/components/SignInPage";
 
 //import { configure } from 'mobx'
@@ -122,9 +123,7 @@ class App extends React.Component {
             <EmojiGame selectedTheme={this.getCurrentTheme()} 
                       onChangeTheme={this.onChangeTheme}/>
           </Route>
-          <Route path="/examples">
-            <Examples/>
-          </Route>
+          
           <Route path="/users-page" component={UsersPage}>
           </Route>
           <Route path="/todos-with-api" component={TodosAppWithApi}>
@@ -135,6 +134,9 @@ class App extends React.Component {
           </Route>
           <Route path="/login-page">
             <LoginPage/>
+          </Route>
+          <Route path="/private-advanced-concepts">
+            <PracticeAdvancedConceptsRoute/>
           </Route>
           <Route path="/">
             <HomePage/>

@@ -8,48 +8,48 @@ import { isLoggedIn } from "../../../utils/AuthUtils";
 
 @inject('authStore')
 @observer
-class SignInRoute extends React.Component{
-    @observable userName="";
-    @observable password="";
+class SignInRoute extends React.Component {
+    @observable userName = "";
+    @observable password = "";
     @observable errorMessage;
 
-    onChangeUserName=(event)=>{
-        this.userName=event.target.value;
+    onChangeUserName = (event) => {
+        this.userName = event.target.value;
     }
 
-    onChangePassword=(event)=>{
-        this.password=event.target.value;
+    onChangePassword = (event) => {
+        this.password = event.target.value;
     }
 
-    onEnterKeyPress =(event)=> {
+    onEnterKeyPress = (event) => {
         if (event.key === "Enter") {
-        this.onClickSignIn();
+            this.onClickSignIn();
         }
     };
-    
-    onClickSignIn=async()=>{
-        const {history}=this.props;
-        if(this.userName==='' || this.userName===undefined)
-        this.errorMessage="please enter userName"
-        else if(this.password==='' || this.password===undefined)
-        this.errorMessage="please enter password"
+
+    onClickSignIn = async() => {
+        const { history } = this.props;
+        if (this.userName === '' || this.userName === undefined)
+            this.errorMessage = "please enter userName"
+        else if (this.password === '' || this.password === undefined)
+            this.errorMessage = "please enter password"
         else {
-            this.errorMessage="";
+            this.errorMessage = "";
             await this.props.authStore.userSignIn();
-            if(getAccessToken())
-            history.replace('/online-shopping-app')
-        }  
+            if (getAccessToken())
+                history.replace('/online-shopping-app')
+        }
     }
 
     renderProductsPage = () => {
         return <Redirect to={'/online-shopping-app'} />;
-    };   
+    };
 
-    render(){
+    render() {
         if (isLoggedIn()) {
             return this.renderProductsPage();
         }
-        
+
         return <SignInPage userName={this.userName}
                 password={this.password}
                 onClickSignIn={this.onClickSignIn}

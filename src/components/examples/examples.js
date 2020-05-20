@@ -34,3 +34,35 @@ class Examples extends React.Component {
 }
 
 export { Examples }
+
+
+// import { observable, action, computed, reaction } from "mobx";
+
+// class Product {
+//     @observable price = 0;
+//     @observable tax = 0;
+
+//     @action.bound
+//     setPriceAndTax() {
+//         this.price = 40;
+//         this.tax = 4;
+//     }
+
+//     @computed
+//     get total() {
+//         return this.price + this.tax;
+//     }
+// }
+
+// const product = new Product();
+
+// reaction(
+//     () => product.total,
+//     () => {
+//         console.log("reaction called");
+//     }
+// );
+
+// product.setPriceAndTax();
+
+// export { Product }

@@ -26,7 +26,6 @@
     "tailwind.macro": "^1.0.0-alpha.10",
     "typescript": "3.8.3"
   },
-
   "scripts": {
     "build:css": "postcss src/index.css -o src/styles/tailwind.css",
     "watch:css": "postcss src/index.css -o src/styles/tailwind.css",
@@ -39,13 +38,13 @@
     "js:build": "npm run build:css react-app-rewired build",
     "js:test": "react-app-rewired test --env=jest-environment-jsdom-sixteen",
     "js:eject": "react-app-rewired eject",
-    "deploy": "export PUBLIC_URL=/2019/$C9_USER/react && npm run build && ./deploy.sh"
+    "deploy": "export PUBLIC_URL=/2019/$C9_USER/react && npm run build && ./deploy.sh",
+    "storybook": "start-storybook -p 8080 -s public",
+    "build-storybook": "build-storybook -s public"
   },
-
   "eslintConfig": {
     "extends": "react-app"
   },
-
   "browserslist": {
     "production": [
       ">0.2%",
@@ -58,7 +57,6 @@
       "last 1 safari version"
     ]
   },
-
   "devDependencies": {
     "@babel/core": "7.7.2",
     "@babel/plugin-proposal-decorators": "7.7.0",
@@ -79,8 +77,7 @@
     "jest-environment-jsdom-sixteen": "1.0.3",
     "react-app-rewired": "2.1.5",
     "tailwindcss": "^1.2.0"
-  }
-
+  },
   "jest": {
     "testEnvironment": "node",
     "collectCoverageForm": [

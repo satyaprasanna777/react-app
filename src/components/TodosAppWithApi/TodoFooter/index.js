@@ -8,9 +8,9 @@ import { Footer, Button,FooterButtons } from './styleComponents';
 @inject('todoStoreWithApi')
 @observer
 class TodoFooter extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
     @action.bound
     onChangeSelectedFilter(event) {
         this.props.todoStoreWithApi.onChangeSelectedFilter(event.target.value)
@@ -29,4 +29,9 @@ class TodoFooter extends React.Component {
             </Footer>)
     }
 }
+
+export const TodoFooterButton = (props) =>{
+    return <Button disabled={props.disabled} onClick={props.onClick}>{props.buttonText}</Button>
+}
+
 export default TodoFooter;

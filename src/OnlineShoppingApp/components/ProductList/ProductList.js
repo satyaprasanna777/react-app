@@ -3,6 +3,7 @@ import {Product} from "../Product";
 import { observer } from "mobx-react";
 import { ProductListItems,ProductsFound,ProductsContainer,NumOfProductsAndSorting } from "./styleComponents";
 import { ProductSort } from "../ProductSort";
+import { Pagination } from "../Pagination";
 
 @observer
 class ProductList extends React.Component{
@@ -17,6 +18,7 @@ class ProductList extends React.Component{
                 <ProductListItems>
                     {this.props.sortedAndFilteredProducts.map((eachProduct)=><Product key={eachProduct.productId} productItem={eachProduct}/>)}
                 </ProductListItems>
+                <Pagination/>
             </ProductsContainer>
         )
     }

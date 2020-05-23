@@ -1,9 +1,9 @@
 import React from 'react'
 import { NavBar, NavChild, Theme, EmojiGame, Score } from '../StylesComponent/stylesComponents.js'
 class Navbar extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
     render() {
         let { score, topScore, onChangeTheme, selectedTheme } = this.props
         return (
@@ -16,5 +16,9 @@ class Navbar extends React.Component {
                 </NavChild>
             </NavBar>)
     }
+}
+
+export const EmojiGameThemeButton = (props) =>{
+    return <Theme>Light</Theme>
 }
 export default Navbar

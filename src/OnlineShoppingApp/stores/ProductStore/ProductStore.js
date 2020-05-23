@@ -12,6 +12,9 @@ class ProductStore{
     @observable sizeFilter;
     @observable sortBy;
     @observable filteredProducts;
+    @observable totalNumOfProducts;
+    @observable totalNumOfPages;
+    @observable offSetValue;
 
     constructor(productService){
         this.productList=[];
@@ -25,12 +28,15 @@ class ProductStore{
                         {isClicked:false,size:'XL'},
                         {isClicked:false,size:'XXL'}];
         this.sortBy='SELECT';
+        this.totalNumOfProducts=0;
+        this.totalNumOfPages=0;
+        this.offSetValue=0;
         this.productsAPIService=productService;
     }
 
     @action.bound
     getProductList(){
-        const productsPromise=this.productsAPIService.getProductsListsApi();
+        const productsPromise=this.productsAPIService.getProductsListsApi(this.offSetValue);
         return bindPromiseWithOnSuccess(productsPromise)
         .to(this.setGetProductListAPIStatus,this.setProductListResponse)
         .catch(this.setGetProductListAPIError)
@@ -38,11 +44,15 @@ class ProductStore{
 
     @action.bound
     setProductListResponse(productsList){
-            this.productList=productsList.map((eachProduct)=>{
+            this.totalNumOfProducts=productsList.total;
+            this.productList=productsList.products.map((eachProduct)=>{
             const newProduct=new Product(eachProduct);
             return newProduct;
         })
         this.filteredProducts=this.productList;
+        this.totalNumOfPages=Math.ceil(this.totalNumOfProducts/3);
+        console.log("productList:",this.productList)
+        console.log("total:",this.totalNumOfPages)
     }
 
     @action.bound

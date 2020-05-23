@@ -1,9 +1,9 @@
 import React from 'react';
 import { EachEmoji, EmojiImg, EmojiName } from '../StylesComponent/stylesComponents.js'
 class EmojiCard extends React.Component {
-        constructor(props) {
-                super(props)
-        }
+        // constructor(props) {
+        //         super(props)
+        // }
         render() {
                 let { eachEmoji, selectedTheme, onEmojiClick } = this.props
                 return (

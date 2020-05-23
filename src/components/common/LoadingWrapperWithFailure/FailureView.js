@@ -3,7 +3,7 @@ import { observer } from 'mobx-react'
 
 import {
   FailureViewContainer,
-  FailureViewMessage,
+  FailureViewMessage,  
   RetryButton,
 } from './styledComponents'
 

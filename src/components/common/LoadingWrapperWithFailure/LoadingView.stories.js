@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {withKnobs,color,number} from '@storybook/addon-knobs';
+import {withKnobs,color, number} from '@storybook/addon-knobs';
 import LoadingView from "./LoadingView";
 
 export default{
@@ -18,8 +18,11 @@ withCustomColor.story={
     decorators:[withKnobs]
 }
 
-export const withCustomHeightAndWidth=() =>(
-    <LoadingView 
-        height={number('Height',50)}
-        width={number('width',50)}/>
+export const withCustomHeightAndWidth= () =>(
+    <LoadingView height={number('Height',50)}
+                width={number('Width',50)}/>
 )
+
+withCustomHeightAndWidth.story={
+    decorators:[withKnobs]
+}

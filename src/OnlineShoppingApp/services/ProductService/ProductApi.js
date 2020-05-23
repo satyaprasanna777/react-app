@@ -11,13 +11,13 @@ class ProductApi{
     api
     constructor() {
         this.api = create({
-            baseURL: productsListUrl
+            baseURL: productsListUrl   
         })
     }
-    getProductsListsApi() {
+    getProductsListsApi(offSetValue) {
         return networkCallWithApisauce(
             this.api,
-            endPoints.products,
+            endPoints(offSetValue),
             {},
             apiMethods.get)
     }

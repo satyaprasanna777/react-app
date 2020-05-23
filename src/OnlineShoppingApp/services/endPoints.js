@@ -1,5 +1,5 @@
-const endPoints={
-    products:"v1/products/"
+const endPoints= (offSetValue) =>{
+    return `products?limit=3&offset=${offSetValue}`;
 };
 
-export default endPoints;
+export default endPoints;  

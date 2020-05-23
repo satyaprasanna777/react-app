@@ -6,9 +6,9 @@ import todoStore from '../../../stores/TodoStore/todoStore';
 
 @observer
 class TodoFooter extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
     @action.bound
     onChangeSelectedFilter(event) {
         todoStore.onChangeSelectedFilter(event.target.value)
